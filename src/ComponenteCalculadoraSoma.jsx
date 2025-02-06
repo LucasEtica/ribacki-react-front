@@ -7,6 +7,8 @@ function ComponenteCalculadoraSoma() {
   const [resultado, setResultado] = useState(null);
   const navigate = useNavigate(); // 🔹 Permite voltar para a tela principal
 
+  const API_URL = import.meta.env.VITE_API_URL; // Pega a variavel do .env do front para facilitar os testes
+
   function calcularSoma() {
     setResultado(Number(num1) + Number(num2));
   }
@@ -20,7 +22,7 @@ function ComponenteCalculadoraSoma() {
       // fetch("http://localhost:5000/historico", { ... }) → Faz uma requisição HTTP POST para o backend.
       // headers: { "Content-Type": "application/json" } → Indica que os dados serão enviados no formato JSON.
       // await → Espera o servidor responder antes de continuar.
-      const response = await fetch("https://ribacki-react.onrender.com/historico", {
+      const response = await fetch(`${API_URL}/historico`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ numero1: num1, numero2: num2, resultado: soma }),

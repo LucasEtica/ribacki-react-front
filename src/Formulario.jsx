@@ -8,12 +8,16 @@ function Formulario({ onUsuarioAdicionado }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
 
+  const API_URL = import.meta.env.VITE_API_URL; // Pega a variavel do .env do front para facilitar os testes
+
   // 🔹 Função chamada quando o formulário é enviado
   function handleSubmit(e) {
     e.preventDefault(); // 🔹 Evita o recarregamento da página
 
-    // 🔹 Envia os dados para o backend via API
-    fetch("https://ribacki-react.onrender.com/usuarios", {
+    // Envia os dados para o backend via API
+    // http://localhost:5000
+    // https://ribacki-react.onrender.com
+    fetch(API_URL + "/usuarios", {
       method: "POST", // 🔹 Método HTTP POST para enviar dados
       headers: { "Content-Type": "application/json" }, // 🔹 Define o tipo do corpo da requisição
       body: JSON.stringify({ nome, email }), // 🔹 Converte os valores para JSON antes de enviar

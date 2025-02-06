@@ -18,7 +18,9 @@ function App() {
 
   // 🔹 Busca os usuários do backend quando o componente é montado
   useEffect(() => {
-    fetch("https://ribacki-react.onrender.com/usuarios") // 🔹 Faz a requisição GET para listar os usuários
+    // http://localhost:5000/usuarios
+    // https://ribacki-react.onrender.com (quente)
+    fetch("http://localhost:5000/usuarios") // 🔹 Faz a requisição GET para listar os usuários
       .then((res) => res.json()) // 🔹 Converte a resposta para JSON
       .then((data) => setUsuarios(data)) // 🔹 Atualiza o estado com os usuários recebidos
       .catch((error) => console.error("Erro ao buscar usuários:", error)); // 🔹 Captura erros na requisição
@@ -30,7 +32,9 @@ function App() {
   }
 
   function excluirUsuario(id) {
-    fetch(`https://ribacki-react.onrender.com/usuarios/${id}`, { method: "DELETE" })
+    // http://localhost:5000
+    // https://ribacki-react.onrender.com (quente)
+    fetch(`http://localhost:5000/usuarios/${id}`, { method: "DELETE" })
       .then((res) => res.json())
       .then(() => {
         setUsuarios(usuarios.filter((user) => user.id !== id)); // Atualiza a lista

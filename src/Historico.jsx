@@ -5,11 +5,15 @@ function Historico() {
   const [historico, setHistorico] = useState([]); // 🔹 Estado para armazenar o histórico
   const navigate = useNavigate(); // 🔹 Permite voltar para a calculadora
 
+  const API_URL = import.meta.env.VITE_API_URL; // Pega a variavel do .env do front para facilitar os testes
+
   // Buscar o histórico do backend quando a página carregar
   useEffect(() => {
     async function carregarHistorico() {
       try {
-        const response = await fetch("https://ribacki-react.onrender.com/historico");
+      // http://localhost:5000
+      // https://ribacki-react.onrender.com
+        const response = await fetch(`${API_URL}/historico`);
         const data = await response.json();
         setHistorico(data);
       } catch (error) {
@@ -23,7 +27,9 @@ function Historico() {
   // 🔹 Função para excluir um cálculo do histórico
   async function excluirCalculo(id) {
     try {
-      const response = await fetch(`https://ribacki-react.onrender.com/historico/${id}`, {
+      // http://localhost:5000
+      // https://ribacki-react.onrender.com
+      const response = await fetch(`${API_URL}/historico/${id}`, {
         method: "DELETE",
       });
 
